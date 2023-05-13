@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;600;700;800;900&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+}
+
+@mixin hideTapHighlightColor() {
+	//Prevent highlight colour when element is tapped
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@mixin hardwareAccel() {
+	//Improve performance on mobile/tablet devices
+	transform: translateZ(0);
+}
+
+@mixin improveAntiAlias() {
+	//Improve aliasing on mobile/tablet devices
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.landing-bg {
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0a0a0a;  /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    #landing-text {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        border: 3px solid rgb(29, 29, 29);
+        height: 50%;
+        width: 40%;
+        justify-content: center;
+        background-color: #0c0c0c;
+        h1 {
+            font-size: 6rem;
+            font-weight: 800;
+            margin: 0;
+        }
+        button {
+            font-family: 'Lato';
+            font-weight: bold;
+            word-spacing: 3px;
+            font-size: 1rem;
+            border: none;
+            background: rgb(94, 0, 246);
+            width: 10rem;
+            height: 3rem;
+            border-radius: 0.5em;
+            cursor: pointer;
+            color: white;
+            margin-top: 1rem;
+            transition-duration: 0.3s;
+            transition-property: background;
+            transform: translateZ(0); /* Hack to improve performance on mobile/tablet devices */
+            box-shadow: 
+                inset 0 0 0 3px rgb(94, 0, 246),
+                0 0 1px rgba(0, 0, 0, 0); /* Hack to improve aliasing on mobile/tablet devices */
+                &:hover {
+                    background: none;
+                }
+            }
+            
+        
+    }
+}
