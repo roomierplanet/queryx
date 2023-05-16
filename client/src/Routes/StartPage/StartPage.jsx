@@ -8,10 +8,9 @@ function StartPage() {
             <h1>Queryx</h1>
             <p>Place your files in the <b>YourDocs</b> directory</p>
             <Link to="/chat">
-                <button>Get Started</button>
+                <button >Get Started</button>
             </Link>
         </div>
-        
     </div>); 
 }
 

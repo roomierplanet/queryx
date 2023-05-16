@@ -13,6 +13,9 @@ code {
       monospace;
 }
 
+////////////////////////////////////
+/// Landing Page
+///////////////////////////////////
 @mixin hideTapHighlightColor() {
 	//Prevent highlight colour when element is tapped
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -50,7 +53,6 @@ code {
         height: 50%;
         width: 40%;
         justify-content: center;
-        background-color: #0c0c0c;
         h1 {
             font-size: 6rem;
             font-weight: 800;
@@ -81,5 +83,89 @@ code {
             }
             
         
+    }
+}
+
+
+////////////////////////////////////
+/// ChatPage
+///////////////////////////////////
+
+.chatPage {
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0a0a0a;
+    .loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgb(202, 202, 202);
+        p {
+            margin-top: 2rem;
+            animation: blinker 2s linear infinite;
+            animation-fill-mode: forwards;
+        }
+        @keyframes blinker {
+            from { opacity: 1.0; }
+            50% { opacity: 0.5; }
+            to { opacity: 1.0; }
+        }
+    }
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid rgb(94, 0, 246);
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    4.9% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    5% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
     }
 }
