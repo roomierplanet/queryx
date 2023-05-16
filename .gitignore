@@ -29,3 +29,5 @@ venv
 .env
 
 .chroma
+
+YourDocs/**
