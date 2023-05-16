@@ -44,8 +44,7 @@ def query(request):
     docsearch = Pinecone.from_existing_index("queryx", embeddings)
     docs = docsearch.similarity_search(queryText)
     output = chain.run(input_documents = docs, question = queryText)
-    print(docs)
-    print(output)
     return HttpResponse(json.dumps({
-        'Message': 'Success'
+        'Message': 'Success',
+        'Result': output
     }))
