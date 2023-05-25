@@ -136,6 +136,41 @@ code {
             flex-direction: column;
         }
     }
+    .chat-container {
+        height: 90%;
+        width: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column-reverse;
+        margin-bottom: 1rem;
+        align-items: center;
+        .chat-area {    
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            .chat-message {
+                width: 50%;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 1rem;;
+                p {
+                    white-space: pre-wrap;
+                }
+            }
+            #user {
+                background-color: #1a1a1a;
+            }
+            #gpt {
+                background-color:rgb(94, 0, 246);
+            }
+        }
+
+    }
+    
     .loaded-page-queried {
         height: 95%;
         width: 100%;
@@ -143,26 +178,6 @@ code {
         flex-flow: column nowrap;
         justify-content: flex-end;
         align-items: center;
-        .chat-area {
-            height: 80%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            overflow:auto;
-            align-items: center;
-            justify-content: flex-end;
-            .chat-message {
-                width: 50%;
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-            #user {
-                background-color: #1a1a1a;
-            }
-            #gpt {
-                background-color:rgb(42, 42, 42);
-            }
-        }
         .gen-text {
             width: 40%;
             display: flex;
@@ -224,7 +239,7 @@ code {
 }
 
 ::-webkit-scrollbar {
-    width: 16px;
+    width: 0px;
 }
 
 ::-webkit-scrollbar-track {

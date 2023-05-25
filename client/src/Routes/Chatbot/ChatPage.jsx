@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { InputTextarea } from 'primereact/inputtextarea';
-        
+import ChatMessage from '../../Components/ChatMessage';
         
 
 export default function ChatPage() {
@@ -36,7 +36,7 @@ export default function ChatPage() {
             body: JSON.stringify(queryBody)
         })
         const jsonResponse = await response.json()
-        return jsonResponse.Result
+        return jsonResponse.result
     }
     const handleQuerySubmit = async () => {
         if (query === "") return     
@@ -54,6 +54,7 @@ export default function ChatPage() {
         // call api with query and get response
         const queryResponse = await getQuery(tempQuery)
         setChatHistory(hist => [...hist, queryResponse])
+        document.getElementById('chat-container').scrollTop = 100000;
         setLoadingResponse(false)
     }
     return (
@@ -67,15 +68,16 @@ export default function ChatPage() {
                     </div>
                     }
                     {sessionStart &&
-                        <div className="chat-area">
+                        <div className="chat-container" id="chat-container">
+                            <div className="chat-area">
                             {chatHistory.map((msg, i) => {
                                 return (
-                                    <div className="chat-message" id={i % 2 === 1 ? 'user' : 'gpt'}>
-                                        <p>{msg}</p>
-                                    </div>
+                                    <ChatMessage message={msg} idx={i} />
                                 ) 
                                 })}
+                            </div>
                         </div>
+                        
                     }
                     {loadingResponse &&
                     <div className="gen-text">
