@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock, nord } from "react-code-blocks";
+import { CodeBlock, irBlack } from "react-code-blocks";
 import { useLinkClickHandler } from 'react-router-dom';
 
 export default function ChatMessage(props) {
@@ -8,7 +8,7 @@ export default function ChatMessage(props) {
     const blocks = content.split("```")
     const langs = ["abap", "actionscript", "ada", "arduino", "autoit", "c", "clojure", "cs", "c", "cpp", "coffeescript", "csharp", "css", "cuda", "d", "dart", "delphi", "elixir", "elm", "erlang", "fortran", "foxpro", "fsharp", "go", "graphql", "gql", "groovy", "haskell", "haxe", "html", "java", "javascript", "json", "julia", "jsx", "js", "kotlin", "latex", "lisp", "livescript", "lua", "mathematica", "makefile", "matlab", "objectivec", "objective", "objective", "objectpascal", "ocaml", "octave", "perl", "php", "powershell", "prolog", "puppet", "python", "qml", "r", "racket", "restructuredtext", "rest", "ruby", "rust", "sass", "less", "scala", "scheme", "shell", "smalltalk", "sql", "standardmlyam", "sml", "swift", "tcl", "tex", "text", "tsx", "ts", "typescript", "vala", "vbnet", "verilog", "vhdl", "xml", "xquery", "yaml"]
     let words = content.split(" ")
-    let language = "C++"
+    let language = "js"
     for(let word of words) {
         if (langs.includes(word.toLowerCase())) {
             language = word.toLowerCase()
@@ -18,8 +18,8 @@ export default function ChatMessage(props) {
         return (
             <div className="chat-message" id={idx % 2 === 0 ? 'user' : 'gpt'}>
                 <CodeBlock
-                    text={content}
-                    theme={nord}
+                    text={content.substring(1)}
+                    theme={irBlack}
                     language={language}
                     wrapLongLines
                 />
@@ -44,9 +44,9 @@ export default function ChatMessage(props) {
                         )
                     } else {
                         return (<CodeBlock
-                                    text={msg}
+                                    text={msg.substring(1)}
                                     language={language}
-                                    theme={nord}
+                                    theme={irBlack}
                                     wrapLongLines />)
                     }
                 })}
