@@ -9,15 +9,16 @@ from langchain.vectorstores import Pinecone
 import pinecone
 from dotenv import load_dotenv
 from django.views.decorators.csrf import csrf_exempt
-from langchain.llms import OpenAI
-from langchain.chains.question_answering import load_qa_chain
-
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import ConversationalRetrievalChain
+from langchain.memory import ConversationBufferMemory
 
 load_dotenv()
 pinecone.init(
     api_key=os.getenv('PINECONE_API_KEY'), 
     environment=os.getenv('PINECONE_ENV') 
     )
+
 
 def update(request):
     
@@ -39,12 +40,12 @@ def query(request):
     body = json.loads(req_body)
     queryText = body['queryText']
     embeddings = OpenAIEmbeddings(openai_api_key=os.getenv('OPENAI_API_KEY'))
-    llm = OpenAI(temperature=0, openai_api_key=os.getenv('OPENAI_API_KEY'))
-    chain = load_qa_chain(llm, chain_type="stuff")
     docsearch = Pinecone.from_existing_index("queryx", embeddings)
-    docs = docsearch.similarity_search(queryText)
-    output = chain.run(input_documents = docs, question = queryText)
+    llm = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo',openai_api_key=os.getenv('OPENAI_API_KEY'))
+    memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+    chain = ConversationalRetrievalChain.from_llm(llm, docsearch.as_retriever(), memory=memory)
+    result = chain({"question": queryText})
     return HttpResponse(json.dumps({
-        'Message': 'Success',
-        'Result': output
+        'message': 'success',
+        'result': result["answer"]
     }))
